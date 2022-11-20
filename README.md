@@ -2,22 +2,22 @@
 
 A Node/Express API for Pantree - Web App.
 
- ***(Link coming soon!)***
+**_(Link coming soon!)_**
 
 ## About
 
 This API serves as the initial logic for the Pantree Web App, providing operations for managing Recipes, Ingredients, and generating Shopping Lists.
 
-***More information coming soon...***
+**_More information coming soon..._**
 
 ## Technologies
 
 The List Maker API was built and deployed with the following technologies:
 
--   [Node.js](https://nodejs.org/)
--   [Express](https://expressjs.com/)
--   [Mongoose](https://mongoosejs.com/)
--   [MongoDB](https://www.mongodb.com/)
+- [Node.js](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [Mongoose](https://mongoosejs.com/)
+- [MongoDB](https://www.mongodb.com/)
 
 ## Getting Started
 
@@ -33,14 +33,10 @@ Run the provided setup script:
 
     npm run setup
 
-<!-- Created a .env file in the project root, and make sure the following keys are added:
+Created a .env file in the project root, and make sure the following keys are added:
 
     PORT=<Add Port Number - e.g. 3000>
-    SENTRY_URL=<Add Sentry URL>
-    NODE_ENV=<Add Environment - e.g. development>
-    MONGO_URL=<Add MongoDB PATH/URL>
-    API_VERSION=<Add Version - e.g. v1>
-    JWT_SECRET=<Add Secret - Make it long and random!> -->
+    MONGO_URI=<Add MongoDB PATH/URL>
 
 Run and debug the application with the dev script:
 
