@@ -1,14 +1,14 @@
 const {
-	getAllIngredients,
-	getIngredientById,
-	getIngredientByName,
-	addIngredient,
-	updateIngredientById,
-	deleteIngredientById,
+	getAll,
+	getById,
+	getByName,
+	add,
+	updateById,
+	deleteById,
 } = require('../services/ingredient.service');
 
 const getAllIngredients = async (req, res, next) => {
-	await getAllIngredients()
+	await getAll()
 		.then((ingredients) => {
 			return res.json(ingredients);
 		})
@@ -20,7 +20,7 @@ const getAllIngredients = async (req, res, next) => {
 const getIngredientById = async (req, res, next) => {
 	const { id } = req.params;
 
-	await getIngredientById(id)
+	await getById(id)
 		.then((ingredient) => {
 			return res.json(ingredient);
 		})
@@ -32,7 +32,7 @@ const getIngredientById = async (req, res, next) => {
 const getIngredientByName = async (req, res, next) => {
 	const { name } = req.params;
 
-	await getIngredientByName(name)
+	await getByName(name)
 		.then((ingredient) => {
 			return res.json(ingredient);
 		})
@@ -44,7 +44,7 @@ const getIngredientByName = async (req, res, next) => {
 const addIngredient = async (req, res, next) => {
 	const ingredientData = req.body;
 
-	await addIngredient(ingredientData)
+	await add(ingredientData)
 		.then((ingredient) => {
 			return res.json(ingredient);
 		})
@@ -56,7 +56,7 @@ const addIngredient = async (req, res, next) => {
 const updateIngredientById = async (req, res, next) => {
 	const ingredientData = req.body;
 
-	await updateIngredientById(ingredientData)
+	await updateById(ingredientData)
 		.then((ingredient) => {
 			return res.json(ingredient);
 		})
@@ -68,7 +68,7 @@ const updateIngredientById = async (req, res, next) => {
 const deleteIngredientById = async (req, res, next) => {
 	const { id } = req.params;
 
-	await deleteIngredientById(id)
+	await deleteById(id)
 		.then(() => {
 			return res.sendStatus(200);
 		})

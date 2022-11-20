@@ -1,18 +1,18 @@
 const { Ingredient } = require('../models/ingredient.model');
 
-const getAllIngredients = async () => {
+const getAll = async () => {
 	return await Ingredient.find({});
 };
 
-const getIngredientById = async (id) => {
+const getById = async (id) => {
 	return await Ingredient.findById(id);
 };
 
-const getIngredientByName = async (name) => {
+const getByName = async (name) => {
 	return await Ingredient.findOne({ name: name });
 };
 
-const addIngredient = async (ingredientData) => {
+const add = async (ingredientData) => {
 	const ingredientToAdd = new Ingredient({
 		name: ingredientData.name,
 		amount: ingredientData.amount,
@@ -22,7 +22,7 @@ const addIngredient = async (ingredientData) => {
 	return await ingredientToAdd.save();
 };
 
-const updateIngredientById = async (ingredientData) => {
+const updateById = async (ingredientData) => {
 	const ingredientToUpdate = Ingredient.findById(ingredientData.id);
 
 	ingredientToUpdate.name = ingredientData.name;
@@ -32,17 +32,17 @@ const updateIngredientById = async (ingredientData) => {
 	return await ingredientToUpdate.save();
 };
 
-const deleteIngredientById = async (id) => {
+const deleteById = async (id) => {
 	const ingredientToDelete = Ingredient.findById(id);
 
 	return await ingredientToDelete.remove();
 };
 
 module.exports = {
-	getAllIngredients,
-	getIngredientById,
-	getIngredientByName,
-	addIngredient,
-	updateIngredientById,
-	deleteIngredientById,
+	getAll,
+	getById,
+	getByName,
+	add,
+	updateById,
+	deleteById,
 };
