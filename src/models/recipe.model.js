@@ -6,7 +6,22 @@ const recipeSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	ingredients: [IngredientSchema],
+	ingredients: [
+		{
+			name: {
+				type: String,
+				required: true,
+			},
+			amount: {
+				type: Number,
+				required: true,
+			},
+			measurement: {
+				type: String,
+				required: true,
+			},
+		},
+	],
 });
 
 module.exports = {
