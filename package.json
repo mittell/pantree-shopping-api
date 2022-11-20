@@ -1,0 +1,32 @@
+{
+	"name": "pantree-shopping-api",
+	"version": "1.0.0",
+	"description": "Pantree - Shopping API",
+	"main": "server.js",
+	"scripts": {
+		"setup": "npm install && npx husky install"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mittell/pantree-shopping-api.git"
+	},
+	"author": "Chris Mittell",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/mittell/pantree-shopping-api/issues"
+	},
+	"homepage": "https://github.com/mittell/pantree-shopping-api#readme",
+	"dependencies": {
+		"body-parser": "^1.20.1",
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.3",
+		"express": "^4.18.2",
+		"helmet": "^6.0.0",
+		"mongoose": "^6.7.2"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^17.2.0",
+		"@commitlint/config-conventional": "^17.2.0",
+		"husky": "^8.0.2"
+	}
+}
