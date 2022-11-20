@@ -1,7 +1,9 @@
+require('dotenv').config();
+require('./context/data.context').connect();
 const express = require('express');
-const port = 3000;
 
 const app = express();
+const port = process.env.PORT;
 
 app.use(express.json());
 
