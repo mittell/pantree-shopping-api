@@ -5,6 +5,7 @@
 	"main": "src/server.js",
 	"scripts": {
 		"setup": "npm install && npx husky install",
+		"seed": "node src/seed/seed.js",
 		"dev": "npx nodemon src/server.js",
 		"start": "node src/server.js"
 	},
