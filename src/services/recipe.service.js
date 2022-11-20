@@ -1,18 +1,18 @@
 const { Recipe } = require('../models/recipe.model');
 
-const getAllRecipes = async () => {
+const getAll = async () => {
 	return await Recipe.find({});
 };
 
-const getRecipeById = async (id) => {
+const getById = async (id) => {
 	return await Recipe.findById(id);
 };
 
-const getRecipeByName = async (name) => {
+const getByName = async (name) => {
 	return await Recipe.findOne({ name: name });
 };
 
-const addRecipe = async (recipeData) => {
+const add = async (recipeData) => {
 	const recipeToAdd = new Recipe({
 		name: recipeData.name,
 		ingredients: recipeData.ingredients,
@@ -21,7 +21,7 @@ const addRecipe = async (recipeData) => {
 	return await recipeToAdd.save();
 };
 
-const updateRecipeById = async (recipeData) => {
+const updateById = async (recipeData) => {
 	const recipeToUpdate = Recipe.findById(recipeData.id);
 
 	recipeToUpdate.name = recipeData.name;
@@ -30,17 +30,17 @@ const updateRecipeById = async (recipeData) => {
 	return await recipeToUpdate.save();
 };
 
-const deleteRecipeById = async (id) => {
+const deleteById = async (id) => {
 	const recipeToDelete = Recipe.findById(id);
 
 	return await recipeToDelete.remove();
 };
 
 module.exports = {
-	getAllRecipes,
-	getRecipeById,
-	getRecipeByName,
-	addRecipe,
-	updateRecipeById,
-	deleteRecipeById,
+	getAll,
+	getById,
+	getByName,
+	add,
+	updateById,
+	deleteById,
 };
