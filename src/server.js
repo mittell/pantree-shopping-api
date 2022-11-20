@@ -6,6 +6,7 @@ const app = express();
 const port = process.env.PORT;
 
 const ingredientRoutes = require('./routes/ingredient.routes');
+const recipeRoutes = require('./routes/recipe.routes');
 
 app.use(express.json());
 
@@ -14,6 +15,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/ingredients', ingredientRoutes);
+app.use('/api/recipes', recipeRoutes);
 
 app.listen(port, () => {
 	console.log(`App is listening on port ${port}...`);
