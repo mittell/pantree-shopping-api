@@ -3,7 +3,6 @@ const express = require('express');
 const {
 	getAllIngredients,
 	getIngredientById,
-	getIngredientByName,
 	addIngredient,
 	updateIngredientById,
 	deleteIngredientById,
