@@ -5,7 +5,8 @@
 	"main": "src/server.js",
 	"scripts": {
 		"setup": "npm install && npx husky install",
-		"dev": "npx nodemon src/server.js"
+		"dev": "npx nodemon src/server.js",
+		"start": "node src/server.js"
 	},
 	"repository": {
 		"type": "git",
