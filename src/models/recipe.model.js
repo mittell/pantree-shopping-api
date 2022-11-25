@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { IngredientSchema } = require('./ingredient.model');
 
 const recipeSchema = new mongoose.Schema({
 	name: {
@@ -8,18 +7,15 @@ const recipeSchema = new mongoose.Schema({
 	},
 	ingredients: [
 		{
-			name: {
-				type: String,
-				required: true,
+			ingredient: {
+				type: mongoose.ObjectId,
+				ref: 'Ingredient',
 			},
 			amount: {
 				type: Number,
 				required: true,
 			},
-			measurement: {
-				type: String,
-				required: true,
-			},
+			_id: false,
 		},
 	],
 });

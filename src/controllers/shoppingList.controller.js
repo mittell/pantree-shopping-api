@@ -1,32 +1,35 @@
 const { getById } = require('../services/recipe.service');
 
 const generateShoppingList = async (req, res, next) => {
-	const { recipeIds } = req.body;
+	try {
+		const { recipeIds } = req.body;
 
-	console.log('REQUEST ' + recipeIds);
+		let allIngredients = [];
 
-	let allIngredients = [];
+		for (const id of recipeIds) {
+			const recipe = await getById(id);
 
-	for (const id of recipeIds) {
-		const recipe = await getById(id);
+			allIngredients.push(...recipe.ingredients);
+		}
 
-		allIngredients.push(...recipe.ingredients);
+		const result = Object.values(
+			allIngredients.reduce(
+				(acc, { amount, ingredient: { name, measurement } }) => {
+					acc[name] = {
+						name,
+						amount: (acc[name] ? acc[name].amount : 0) + amount,
+						measurement,
+					};
+					return acc;
+				},
+				{}
+			)
+		);
+
+		res.json(result);
+	} catch (error) {
+		next(error);
 	}
-
-	console.log('allIngredients ' + allIngredients);
-
-	const result = Object.values(
-		allIngredients.reduce((acc, { name, amount, measurement }) => {
-			acc[name] = {
-				name,
-				amount: (acc[name] ? acc[name].amount : 0) + amount,
-				measurement,
-			};
-			return acc;
-		}, {})
-	);
-
-	res.json(result);
 };
 
 module.exports = {
