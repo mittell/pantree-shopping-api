@@ -6,6 +6,11 @@ const cors = require('cors');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 
+const {
+	handleErrors,
+	handleInvalidUrl,
+} = require('../middleware/error.middleware');
+
 const ingredientRoutes = require('../routes/ingredient.routes');
 const recipeRoutes = require('../routes/recipe.routes');
 const shoppingListRoutes = require('../routes/shoppingList.routes');
@@ -56,7 +61,8 @@ class App {
 		console.log('Routes registered...');
 	}
 	registerMiddleware() {
-		// TODO - Add Error Middleware here...
+		this.app.use(handleInvalidUrl);
+		this.app.use(handleErrors);
 
 		console.log('Middleware registered...');
 	}
