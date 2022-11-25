@@ -46,7 +46,7 @@ class App {
 	}
 	registerRoutes() {
 		this.app.get('/', (req, res) => {
-			res.send('Pantree - Shopping API v1.0.0');
+			res.send(`Pantree - Shopping API v${process.env.VERSION}`);
 		});
 
 		this.app.use('/api/ingredients', ingredientRoutes);
