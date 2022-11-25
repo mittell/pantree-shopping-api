@@ -3,8 +3,6 @@ const { getById } = require('../services/recipe.service');
 const generateShoppingList = async (req, res, next) => {
 	const { recipeIds } = req.body;
 
-	console.log('REQUEST ' + recipeIds);
-
 	let allIngredients = [];
 
 	for (const id of recipeIds) {
@@ -12,8 +10,6 @@ const generateShoppingList = async (req, res, next) => {
 
 		allIngredients.push(...recipe.ingredients);
 	}
-
-	console.log('allIngredients ' + allIngredients);
 
 	const result = Object.values(
 		allIngredients.reduce((acc, { name, amount, measurement }) => {
