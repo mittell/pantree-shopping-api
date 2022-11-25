@@ -13,14 +13,17 @@ const generateShoppingList = async (req, res, next) => {
 		}
 
 		const result = Object.values(
-			allIngredients.reduce((acc, { name, amount, measurement }) => {
-				acc[name] = {
-					name,
-					amount: (acc[name] ? acc[name].amount : 0) + amount,
-					measurement,
-				};
-				return acc;
-			}, {})
+			allIngredients.reduce(
+				(acc, { amount, ingredient: { name, measurement } }) => {
+					acc[name] = {
+						name,
+						amount: (acc[name] ? acc[name].amount : 0) + amount,
+						measurement,
+					};
+					return acc;
+				},
+				{}
+			)
 		);
 
 		res.json(result);

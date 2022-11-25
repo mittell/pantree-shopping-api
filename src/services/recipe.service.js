@@ -1,11 +1,21 @@
 const { Recipe } = require('../models/recipe.model');
 
 const getAll = async () => {
-	return await Recipe.find({});
+	return await Recipe.find({}).populate({
+		path: 'ingredients',
+		populate: {
+			path: 'ingredient',
+		},
+	});
 };
 
 const getById = async (id) => {
-	return await Recipe.findById(id);
+	return await Recipe.findById(id).populate({
+		path: 'ingredients',
+		populate: {
+			path: 'ingredient',
+		},
+	});
 };
 
 const getByName = async (name) => {
