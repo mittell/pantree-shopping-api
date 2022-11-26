@@ -1,11 +1,25 @@
 const { Ingredient } = require('../models/ingredient.model');
+const IngredientToReturnDto = require('../dtos/ingredientToReturn.dto');
 
 const getAll = async () => {
-	return await Ingredient.find({});
+	const results = [];
+
+	const ingredientsFromServer = await Ingredient.find({});
+
+	for (const ingredient of ingredientsFromServer) {
+		let ingredientToReturn = new IngredientToReturnDto();
+		results.push(ingredientToReturn.mapFromResult(ingredient));
+	}
+
+	return results;
 };
 
 const getById = async (id) => {
-	return await Ingredient.findById(id);
+	const result = new IngredientToReturnDto();
+
+	const ingredientFromServer = await Ingredient.findById(id);
+
+	return result.mapFromResult(ingredientFromServer);
 };
 
 const getByName = async (name) => {

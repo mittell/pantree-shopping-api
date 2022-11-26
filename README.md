@@ -35,6 +35,8 @@ Run the provided setup script:
 
 Created a .env file in the project root, and make sure the following keys are added:
 
+    NODE_ENV=<development or production>
+    VERSION=<eg. 1.0.0>
     PORT=<Add Port Number - e.g. 3000>
     MONGO_URI=<Add MongoDB PATH/URL>
 
