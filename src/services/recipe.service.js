@@ -1,21 +1,35 @@
 const { Recipe } = require('../models/recipe.model');
+const RecipeToReturnDto = require('../dtos/recipeToReturn.dto');
 
 const getAll = async () => {
-	return await Recipe.find({}).populate({
+	const results = [];
+
+	const recipesFromServer = await Recipe.find({}).populate({
 		path: 'ingredients',
 		populate: {
 			path: 'ingredient',
 		},
 	});
+
+	for (const recipe of recipesFromServer) {
+		let recipeToReturn = new RecipeToReturnDto();
+		results.push(recipeToReturn.mapFromResult(recipe));
+	}
+
+	return results;
 };
 
 const getById = async (id) => {
-	return await Recipe.findById(id).populate({
+	const result = new RecipeToReturnDto();
+
+	const recipeFromServer = await Recipe.findById(id).populate({
 		path: 'ingredients',
 		populate: {
 			path: 'ingredient',
 		},
 	});
+
+	return result.mapFromResult(recipeFromServer);
 };
 
 const getByName = async (name) => {
