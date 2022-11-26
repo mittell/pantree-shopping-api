@@ -10,17 +10,14 @@ const generate = async (recipeIds) => {
 	}
 
 	const result = Object.values(
-		allIngredients.reduce(
-			(acc, { amount, ingredient: { name, measurement } }) => {
-				acc[name] = {
-					name,
-					amount: (acc[name] ? acc[name].amount : 0) + amount,
-					measurement,
-				};
-				return acc;
-			},
-			{}
-		)
+		allIngredients.reduce((acc, { amount, name, measurement }) => {
+			acc[name] = {
+				name,
+				amount: (acc[name] ? acc[name].amount : 0) + amount,
+				measurement,
+			};
+			return acc;
+		}, {})
 	);
 
 	return result;
