@@ -5,7 +5,7 @@ export function registerCommonRoutes(app: Application) {
 	app.use(`/api/`, commonRoutes());
 }
 
-export function commonRoutes() {
+function commonRoutes() {
 	const router = Router();
 
 	router.get('/', async (_req: Request, res: Response) => {
