@@ -1,7 +1,9 @@
-const { HttpStatusCodes } = require('../constants/httpStatusCodes');
+import { HttpStatusCodes } from './httpCode.type';
 
-class ConfigurationError extends Error {
-	constructor(message) {
+export class ConfigurationError extends Error {
+	public readonly status: number;
+
+	public constructor(message?: string) {
 		super();
 		Object.setPrototypeOf(this, ConfigurationError.prototype);
 
@@ -11,8 +13,10 @@ class ConfigurationError extends Error {
 	}
 }
 
-class UnauthorizedError extends Error {
-	constructor(message) {
+export class UnauthorizedError extends Error {
+	public readonly status: number;
+
+	public constructor(message?: string) {
 		super();
 		Object.setPrototypeOf(this, UnauthorizedError.prototype);
 
@@ -22,8 +26,10 @@ class UnauthorizedError extends Error {
 	}
 }
 
-class UnauthenticatedError extends Error {
-	constructor(message) {
+export class UnauthenticatedError extends Error {
+	public readonly status: number;
+
+	public constructor(message?: string) {
 		super();
 		Object.setPrototypeOf(this, UnauthenticatedError.prototype);
 
@@ -33,8 +39,11 @@ class UnauthenticatedError extends Error {
 	}
 }
 
-class InternalServerError extends Error {
-	constructor(message, error) {
+export class InternalServerError extends Error {
+	public readonly status: number;
+	public error: any;
+
+	public constructor(message?: string, error?: any) {
 		super();
 		Object.setPrototypeOf(this, InternalServerError.prototype);
 
@@ -45,8 +54,10 @@ class InternalServerError extends Error {
 	}
 }
 
-class BadRequestError extends Error {
-	constructor(message) {
+export class BadRequestError extends Error {
+	public readonly status: number;
+
+	public constructor(message?: string) {
 		super();
 		Object.setPrototypeOf(this, BadRequestError.prototype);
 
@@ -56,20 +67,25 @@ class BadRequestError extends Error {
 	}
 }
 
-class ValidationError extends Error {
-	constructor(message, error) {
+export class ValidationError extends Error {
+	public errors: string[];
+	public readonly status: number;
+
+	public constructor(message?: string, error?: any) {
 		super();
 		Object.setPrototypeOf(this, ValidationError.prototype);
 
 		this.status = HttpStatusCodes.UnprocessableEntity;
 		this.name = this.constructor.name;
 		this.message = message ? message : '';
-		this.errors = error && Array.isArray(error) ? error.map((d) => d) : [];
+		this.errors = error && Array.isArray(error) ? error.map((d: any) => d) : [];
 	}
 }
 
-class NotFoundError extends Error {
-	constructor(message) {
+export class NotFoundError extends Error {
+	public readonly status: number;
+
+	public constructor(message?: string) {
 		super();
 		Object.setPrototypeOf(this, NotFoundError.prototype);
 
@@ -79,8 +95,10 @@ class NotFoundError extends Error {
 	}
 }
 
-class MappingError extends Error {
-	constructor(message) {
+export class MappingError extends Error {
+	public readonly status: number;
+
+	public constructor(message?: string) {
 		super();
 		Object.setPrototypeOf(this, MappingError.prototype);
 
@@ -89,14 +107,3 @@ class MappingError extends Error {
 		this.message = message ? message : '';
 	}
 }
-
-module.exports = {
-	ConfigurationError,
-	UnauthorizedError,
-	UnauthenticatedError,
-	InternalServerError,
-	BadRequestError,
-	ValidationError,
-	NotFoundError,
-	MappingError,
-};

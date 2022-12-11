@@ -1,6 +1,8 @@
-const { Error } = require('mongoose');
-const { MongoError } = require('mongodb');
-const {
+import env from '../config/env.config';
+import { NextFunction, Request, Response } from 'express';
+import { Error as MongooseError } from 'mongoose';
+import { MongoError } from 'mongodb';
+import {
 	BadRequestError,
 	InternalServerError,
 	UnauthenticatedError,
@@ -8,9 +10,12 @@ const {
 	ValidationError,
 	MappingError,
 	NotFoundError,
-} = require('../helpers/errors');
+} from '../types/error.types';
 
-async function handleInvalidUrl(req, res) {
+export async function handleInvalidUrl(
+	req: Request,
+	res: Response
+): Promise<void> {
 	res.status(404).json({
 		status: 404,
 		message: 'Invalid route.',
@@ -19,7 +24,15 @@ async function handleInvalidUrl(req, res) {
 	});
 }
 
-async function handleErrors(error, _req, res, _next) {
+export async function handleErrors(
+	error: any,
+	_req: Request,
+	res: Response,
+	_next: NextFunction
+): Promise<void> {
+	if (env.NODE_ENV === 'development') {
+	}
+
 	if (
 		error instanceof UnauthorizedError ||
 		error instanceof UnauthenticatedError ||
@@ -44,7 +57,7 @@ async function handleErrors(error, _req, res, _next) {
 			...(error.message ? { message: error.message } : {}),
 			...(error.errors.length ? { details: error.errors } : {}),
 		});
-	} else if (error instanceof Error.ValidationError) {
+	} else if (error instanceof MongooseError.ValidationError) {
 		res.status(406).json({
 			status: 406,
 			name: error.name,
@@ -84,5 +97,3 @@ async function handleErrors(error, _req, res, _next) {
 		});
 	}
 }
-
-module.exports = { handleInvalidUrl, handleErrors };
